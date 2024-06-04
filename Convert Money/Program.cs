@@ -39,27 +39,27 @@ namespace Convert_Money
                 switch (userInput)
                 {
                     case ComandExchangeRubUsd:
-                        ExchangeMoney(ref quantityRub, ref quantityUsd, exchangeRateRubUsd);
+                        ExchangeMoneyRubUsd();
                         break;
 
                     case ComandExchangeRubEur:
-                        ExchangeMoney(ref quantityRub, ref quantityEur, exchangeRateRubEur);
+                        ExchangeMoneyRubEur();
                         break;
 
                     case ComandExchangeUsdRub:
-                        ExchangeMoney(ref quantityUsd, ref quantityRub, exchangeRateUsdRub);
+                        ExchangeMoneyUsdRub();
                         break;
 
                     case ComandExchangeUsdEur:
-                        ExchangeMoney(ref quantityUsd, ref quantityEur, exchangeRateUsdEur);
+                        ExchangeMoneyUsdEur();
                         break;
 
                     case ComandExchangeEurRub:
-                        ExchangeMoney(ref quantityEur, ref quantityRub, exchangeRateEurRub);
+                        ExchangeMoneyEurRub();
                         break;
 
                     case ComandExchangeEurUsd:
-                        ExchangeMoney(ref quantityEur, ref quantityUsd, exchangeRateEurUsd);
+                        ExchangeMoneyEurUsd();
                         break;
 
                     case ComandExit:
@@ -88,12 +88,106 @@ namespace Convert_Money
                 Console.WriteLine($"Количество EUR {quantityEur}");
             }
 
-            void ExchangeMoney(ref float moneys, ref float exchangeMoneys, float exchangeRate)
+            void ExchangeMoneyRubUsd()
             {
                 Console.Write("Количество валюты для конвертации: ");
-                float quantityExchangeMoneys = Convert.ToSingle(Console.ReadLine(), culture);
-                moneys -= quantityExchangeMoneys;
-                exchangeMoneys += quantityExchangeMoneys * exchangeRate;
+                float quantityExchangeMoney = Convert.ToSingle(Console.ReadLine(), culture);
+
+                if (quantityRub > quantityExchangeMoney)
+                {
+                    quantityRub -= quantityExchangeMoney;
+                    quantityUsd += quantityExchangeMoney * exchangeRateRubUsd;
+                }
+                else
+                {
+                    Console.WriteLine("Недостаточно денег  для обмена.");
+                    Console.ReadKey();
+                }
+            }
+
+            void ExchangeMoneyRubEur()
+            {
+                Console.Write("Количество валюты для конвертации: ");
+                float quantityExchangeMoney = Convert.ToSingle(Console.ReadLine(), culture);
+
+                if (quantityRub > quantityExchangeMoney)
+                {
+                    quantityRub -= quantityExchangeMoney;
+                    quantityEur += quantityExchangeMoney * exchangeRateRubEur;
+                }
+                else
+                {
+                    Console.WriteLine("Недостаточно денег  для обмена.");
+                    Console.ReadKey();
+                }
+            }
+
+            void ExchangeMoneyUsdRub()
+            {
+                Console.Write("Количество валюты для конвертации: ");
+                float quantityExchangeMoney = Convert.ToSingle(Console.ReadLine(), culture);
+
+                if (quantityUsd > quantityExchangeMoney)
+                {
+                    quantityUsd -= quantityExchangeMoney;
+                    quantityRub += quantityExchangeMoney * exchangeRateUsdRub;
+                }
+                else
+                {
+                    Console.WriteLine("Недостаточно денег  для обмена.");
+                    Console.ReadKey();
+                }
+            }
+
+            void ExchangeMoneyUsdEur()
+            {
+                Console.Write("Количество валюты для конвертации: ");
+                float quantityExchangeMoney = Convert.ToSingle(Console.ReadLine(), culture);
+
+                if (quantityUsd > quantityExchangeMoney)
+                {
+                    quantityUsd -= quantityExchangeMoney;
+                    quantityEur += quantityExchangeMoney * exchangeRateUsdEur;
+                }
+                else
+                {
+                    Console.WriteLine("Недостаточно денег  для обмена.");
+                    Console.ReadKey();
+                }
+            }
+
+            void ExchangeMoneyEurRub()
+            {
+                Console.Write("Количество валюты для конвертации: ");
+                float quantityExchangeMoney = Convert.ToSingle(Console.ReadLine(), culture);
+
+                if (quantityEur > quantityExchangeMoney)
+                {
+                    quantityEur -= quantityExchangeMoney;
+                    quantityRub += quantityExchangeMoney * exchangeRateEurRub;
+                }
+                else
+                {
+                    Console.WriteLine("Недостаточно денег  для обмена.");
+                    Console.ReadKey();
+                }
+            }
+
+            void ExchangeMoneyEurUsd()
+            {
+                Console.Write("Количество валюты для конвертации: ");
+                float quantityExchangeMoney = Convert.ToSingle(Console.ReadLine(), culture);
+
+                if (quantityEur > quantityExchangeMoney)
+                {
+                    quantityEur -= quantityExchangeMoney;
+                    quantityUsd += quantityExchangeMoney * exchangeRateEurUsd;
+                }
+                else
+                {
+                    Console.WriteLine("Недостаточно денег  для обмена.");
+                    Console.ReadKey();
+                }
             }
         }
     }
